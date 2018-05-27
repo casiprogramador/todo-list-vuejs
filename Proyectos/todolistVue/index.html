@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/app.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Todo Application
+                        </div>
+                        <form class="card-body" @submit.prevent="add(todo)">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Add todo" v-model="todo">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit" :disabled="!todoIsValid">Add</button>
+                                </span>
+                            </div>
+                        </form>
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item" v-for="todo in todos">
+                                <div class="d-flex">
+
+                                    <div class="p-2">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" v-model="todo.finished">
+                                            <label class="form-check-label">                                  
+                                                <span :class="{'todo-finished': todo.finished}">
+                                                    {{ todo.content }}
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="ml-auto p-2">
+                                        <button class="btn btn-sm btn-danger" @click="remove(todo)">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                    </div>
+                                </div>
+
+
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="src/app.js"></script>
+</body>
+
+</html>
