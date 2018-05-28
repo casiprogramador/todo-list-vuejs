@@ -32,7 +32,7 @@
                         <ul class="list-group list-group-flush">
 
                             <li class="list-group-item" v-for="todo in todos">
-                                <div class="d-flex">
+                                <div class="d-flex" v-if="!todo.isEdited">
 
                                     <div class="p-2">
                                         <div class="form-check">
@@ -45,12 +45,26 @@
                                         </div>
                                     </div>
                                     <div class="ml-auto p-2">
-                                        <button class="btn btn-sm btn-danger" @click="remove(todo)">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
+                                        <button class="btn btn-sm btn-primary" @click="edit(todo)" v-show="!isBeingEdited">
+                                                    <i class="fa fa-edit"></i>
+                                        </button>
                                     </div>
                                 </div>
+                                <form v-else class="m-0" @submit.prevent="update(todo)">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Edit" v-model="editTodo">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
 
+                                            <button class="btn btn-outline-primary" type="submit" :disabled="!editTodoIsValid">
+                                                    <i class="fa fa-save"></i>
+                                                </button>
+                                            <button class="btn btn-outline-danger" @click="remove(todo)">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                        </div>
+
+                                    </div>
+                                </form>
 
 
                             </li>
